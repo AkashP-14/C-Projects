@@ -6,6 +6,8 @@ using namespace std;
 string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 int player = 1;
 int position = 0;   //0-9
+string playerName[2];
+//string choice[1];
 
 void introduction()
 {
@@ -13,12 +15,18 @@ void introduction()
     getchar();  //haults the screen until pressing key
     cout<<"\n\n";
 
+    cout<<"Enter Player 1 name:"<<endl;
+    cin>>playerName[0];
+
+    cout<<"Enter Player 2 name:"<<endl;
+    cin>>playerName[1];
+
     cout<<"***************\n";
     cout<<"Tic-Tac-Toe\n";
     cout<<"***************\n";
 
-    cout<<"Player 1 - X\n";
-    cout<<"Player 2 - 0\n";
+    cout<<playerName[0]<<" - X\n";
+    cout<<playerName[1]<<" - 0\n";
 
     cout<<"\nThe  3x3 grid is shown below:\n\n";
 
@@ -109,7 +117,13 @@ void draw()
 
 void set_position()
 {
-    cout<<"Player "<<player<<"'s turn (Enter: 1-9): ";
+    if(player==1){
+        cout<<playerName[0]<<"'s turn (Enter: 1-9): ";
+    }
+    else
+    {
+        cout<<playerName[1]<<"'s turn (Enter: 1-9): ";
+    }
     while(!(cin>>position))
     {
         cout<<"Please enter a valid number between 1-9"<<endl;
