@@ -2,6 +2,7 @@
 #define DEC_H
 
 void introduction();
+bool is_Winner_Util();
 bool is_Winner();
 bool filled_up();
 void draw();

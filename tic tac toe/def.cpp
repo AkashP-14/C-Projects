@@ -21,6 +21,12 @@ void introduction()
     cout<<"Enter choice: X or O"<<endl;
     cin>>choice[0];
 
+    while(choice[0] != "X" && choice[0] != "O")
+    {
+        cout<<"Please enter a valid choice between: X or O"<<endl;
+        cin>>choice[0];
+    }
+
     cout<<"Enter Player 2 name:"<<endl;
     cin>>playerName[1];
 
@@ -31,11 +37,11 @@ void introduction()
     if(choice[0]=="X")
     {
         cout<<playerName[0]<<" - X\n";
-        cout<<playerName[1]<<" - 0\n";
+        cout<<playerName[1]<<" - O\n";
     }
     else
     {
-        cout<<playerName[0]<<" - 0\n";
+        cout<<playerName[0]<<" - O\n";
         cout<<playerName[1]<<" - X\n";
     }
 
@@ -53,44 +59,53 @@ void introduction()
 
 }
 
+bool is_Winner_Util(string a, string b, string c)
+{
+    if(a==b && b==c && a != " ")
+    {
+        return true;
+    }
+    return false;
+}
+
 bool is_Winner()
 {
     bool winner=false;
 
     //checking the rows
-    if((board[0]==board[1]) && (board[1]==board[2]) && board[0] != " ")
+    if(is_Winner_Util(board[0], board[1], board[2]))
     {
         winner=true;
     }
-    else if((board[3]==board[4]) && (board[4]==board[5]) && board[3] != " ")
+    else if(is_Winner_Util(board[3], board[4], board[5]))
     {
         winner=true;
     }
-    else if((board[6]==board[7]) && (board[7]==board[8]) && board[6] != " ")
+    else if(is_Winner_Util(board[6], board[7], board[8]))
     {
         winner=true;
     }
 
     //checking the column
-    else if((board[0]==board[3]) && (board[3]==board[6]) && board[0] != " ")
+    else if(is_Winner_Util(board[0], board[3], board[6]))
     {
         winner=true;
     }
-    else if((board[1]==board[4]) && (board[4]==board[7]) && board[1] != " ")
+    else if(is_Winner_Util(board[1], board[4], board[7]))
     {
         winner=true;
     }
-    else if((board[2]==board[5]) && (board[5]==board[8]) && board[2] != " ")
+    else if(is_Winner_Util(board[2], board[5], board[8]))
     {
         winner=true;
     }
 
     //checking the diagonals
-    else if((board[0]==board[4]) && (board[4]==board[8]) && board[0] != " ")
+    else if(is_Winner_Util(board[0], board[4], board[8]))
     {
         winner=true;
     }
-    else if((board[2]==board[4]) && (board[4]==board[6]) && board[2] != " ")
+    else if(is_Winner_Util(board[2], board[4], board[6]))
     {
         winner=true;
     }
@@ -203,11 +218,11 @@ void end_game()
 {
     if(is_Winner() && player==1)
     {
-        cout<<"Player 2"<<" is the winner!!"<<endl;
+        cout<<playerName[1]<<" is the winner!!"<<endl;
     }
     else if(is_Winner() && player==2)
     {
-        cout<<"Player 1"<<" is the winner!!"<<endl;
+        cout<<playerName[0]<<" is the winner!!"<<endl;
     }
     else if(filled_up())
     {
