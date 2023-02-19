@@ -7,7 +7,7 @@ string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 int player = 1;
 int position = 0;   //0-9
 string playerName[2];
-//string choice[1];
+string choice[1];
 
 void introduction()
 {
@@ -18,6 +18,9 @@ void introduction()
     cout<<"Enter Player 1 name:"<<endl;
     cin>>playerName[0];
 
+    cout<<"Enter choice: X or O"<<endl;
+    cin>>choice[0];
+
     cout<<"Enter Player 2 name:"<<endl;
     cin>>playerName[1];
 
@@ -25,8 +28,16 @@ void introduction()
     cout<<"Tic-Tac-Toe\n";
     cout<<"***************\n";
 
-    cout<<playerName[0]<<" - X\n";
-    cout<<playerName[1]<<" - 0\n";
+    if(choice[0]=="X")
+    {
+        cout<<playerName[0]<<" - X\n";
+        cout<<playerName[1]<<" - 0\n";
+    }
+    else
+    {
+        cout<<playerName[0]<<" - 0\n";
+        cout<<playerName[1]<<" - X\n";
+    }
 
     cout<<"\nThe  3x3 grid is shown below:\n\n";
 
@@ -141,13 +152,28 @@ void set_position()
 }
 
 void update_board()
-{
-    if(player%2==1)     //switching between player 1 and 2
+{   
+    if(choice[0]=="X")
     {
-        board[position-1]="X";
+        if(player%2==1)     //switching between player 1 and 2
+        {
+            board[position-1]="X";
+        }
+        else
+        {
+            board[position-1]="O";
+        }
     }
-    else{
-        board[position-1]="O";
+    else
+    {
+        if(player%2==1)     //switching between player 1 and 2
+        {
+            board[position-1]="O";
+        }
+        else
+        {
+            board[position-1]="X";
+        }
     }
 }
 
